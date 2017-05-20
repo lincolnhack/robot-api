@@ -6,8 +6,10 @@
   "main": "lib/index.js",
   "dependencies": {
     "async": "^2.4.0",
+    "boom": "^4.3.1",
     "hapi": "^16.1.1",
     "hapi-pino": "^1.4.1",
+    "joi": "^10.5.0",
     "pino": "^4.5.2",
     "serialport": "^4.0.7"
   },
