@@ -104,26 +104,6 @@ function reverseRobot(robotId, callback) {
   })
 }
 
-function stopRobot(robotId, callback) {
-  console.log('stopping', robotId)
-  request.post({
-    url: `http://localhost:5000/robots/${robotId}/stop`,
-    json: true
-  }, (err, res, body) => {
-    if (err) {
-      callback(err)
-      return
-    }
-
-    if (res.statusCode !== 200) {
-      callback(new Error(`Unexpected status code ${res.statusCode}`))
-      return
-    }
-
-    callback(null, robotId)
-  })
-}
-
 function disconnectRobot(robotId, callback) {
   console.log('disconnecting', robotId)
   request.post({
@@ -150,7 +130,6 @@ async.waterfall([
   async.apply(beepRobot),
   async.apply(forwardRobot),
   async.apply(reverseRobot),
-  async.apply(stopRobot),
   async.apply(disconnectRobot)
 ], (err) => {
   if (err) {
