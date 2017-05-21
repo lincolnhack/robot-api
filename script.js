@@ -104,6 +104,46 @@ function reverseRobot(robotId, callback) {
   })
 }
 
+function leftRobot(robotId, callback) {
+  console.log('turning left', robotId)
+  request.post({
+    url: `http://localhost:5000/robots/${robotId}/left`,
+    json: true
+  }, (err, res, body) => {
+    if (err) {
+      callback(err)
+      return
+    }
+
+    if (res.statusCode !== 200) {
+      callback(new Error(`Unexpected status code ${res.statusCode}`))
+      return
+    }
+
+    callback(null, robotId)
+  })
+}
+
+function rightRobot(robotId, callback) {
+  console.log('turning right', robotId)
+  request.post({
+    url: `http://localhost:5000/robots/${robotId}/right`,
+    json: true
+  }, (err, res, body) => {
+    if (err) {
+      callback(err)
+      return
+    }
+
+    if (res.statusCode !== 200) {
+      callback(new Error(`Unexpected status code ${res.statusCode}`))
+      return
+    }
+
+    callback(null, robotId)
+  })
+}
+
 function disconnectRobot(robotId, callback) {
   console.log('disconnecting', robotId)
   request.post({
@@ -130,6 +170,8 @@ async.waterfall([
   async.apply(beepRobot),
   async.apply(forwardRobot),
   async.apply(reverseRobot),
+  async.apply(leftRobot),
+  async.apply(rightRobot),
   async.apply(disconnectRobot)
 ], (err) => {
   if (err) {
