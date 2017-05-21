@@ -173,17 +173,15 @@ let roomba_id = null
 
 async.series([
   (cb) => async.parallel({
-    nxt1: async.apply(createRobot, 'nxt1', 'COM3'),
-    nxt2: async.apply(createRobot, 'nxt1', 'COM6'),
-    ev3: async.apply(createRobot, 'ev3', ''),
-    // roomba: async.apply(createRobot, 'roomba', ''),
+    // nxt1: async.apply(createRobot, 'nxt1', 'COM3'),
+    // nxt2: async.apply(createRobot, 'nxt1', 'COM6'),
+    // ev3: async.apply(createRobot, 'ev3', ''),
+    roomba: async.apply(createRobot, 'roomba', ''),
   }, (err, results) => {
     if (err) {
       cb(err)
       return
     }
-
-    console.log(results)
 
     nxt1_id = results.nxt1
     nxt2_id = results.nxt2
@@ -201,10 +199,10 @@ async.series([
   //   cb()
   // },
 
-  async.apply(async.parallel, [
-    (cb) => connectRobot(nxt1_id, cb),
-    (cb) => connectRobot(nxt2_id, cb)
-  ]),
+  // async.apply(async.parallel, [
+  //   (cb) => connectRobot(nxt1_id, cb),
+  //   (cb) => connectRobot(nxt2_id, cb)
+  // ]),
 
   // async.apply(async.parallel, [
   //   (cb) => beepRobot(nxt1_id, cb),
@@ -212,31 +210,31 @@ async.series([
   // ]),
 
   async.apply(async.parallel, [
-    (cb) => forwardRobot(nxt1_id, cb),
-    (cb) => forwardRobot(nxt2_id, cb),
-    (cb) => forwardRobot(ev3_id, cb),
-    // (cb) => forwardRobot(roomba_id, cb)
+    // (cb) => forwardRobot(nxt1_id, cb),
+    // (cb) => forwardRobot(nxt2_id, cb),
+    // (cb) => forwardRobot(ev3_id, cb),
+    (cb) => forwardRobot(roomba_id, cb)
   ]),
 
   async.apply(async.parallel, [
-    (cb) => reverseRobot(nxt1_id, cb),
-    (cb) => reverseRobot(nxt2_id, cb),
-    (cb) => reverseRobot(ev3_id, cb),
-    // (cb) => reverseRobot(roomba_id, cb)
+    // (cb) => reverseRobot(nxt1_id, cb),
+    // (cb) => reverseRobot(nxt2_id, cb),
+    // (cb) => reverseRobot(ev3_id, cb),
+    (cb) => reverseRobot(roomba_id, cb)
   ]),
 
   async.apply(async.parallel, [
-    (cb) => leftRobot(nxt1_id, cb),
-    (cb) => leftRobot(nxt2_id, cb),
-    (cb) => leftRobot(ev3_id, cb),
-    // (cb) => leftRobot(roomba_id, cb)
+    // (cb) => leftRobot(nxt1_id, cb),
+    // (cb) => leftRobot(nxt2_id, cb),
+    // (cb) => leftRobot(ev3_id, cb),
+    (cb) => leftRobot(roomba_id, cb)
   ]),
 
   async.apply(async.parallel, [
-    (cb) => rightRobot(nxt1_id, cb),
-    (cb) => rightRobot(nxt2_id, cb),
-    (cb) => rightRobot(ev3_id, cb),
-    // (cb) => rightRobot(roomba_id, cb)
+    // (cb) => rightRobot(nxt1_id, cb),
+    // (cb) => rightRobot(nxt2_id, cb),
+    // (cb) => rightRobot(ev3_id, cb),
+    (cb) => rightRobot(roomba_id, cb)
   ]),
 
 ], (err) => {
