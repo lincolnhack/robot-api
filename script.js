@@ -6,7 +6,7 @@ function createRobot(comport, callback) {
     url: 'http://localhost:5000/robots',
     json: {
       name: "cword",
-      type: "nxt1",
+      type: "ev3",
       comport
     }
   }, (err, res, body) => {
